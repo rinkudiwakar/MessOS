@@ -22,18 +22,11 @@ const TestimonialCard = ({ text, name, role }: { text: string, name: string, rol
 );
 
 const Testimonials = () => {
-  const row1 = [
-    { text: "Finally no more arguing with munshi about whether I ate breakfast. The app shows exactly when I scanned and how much was deducted. Transparent and fast.", name: "Rahul S.", role: "B.Tech 3rd Year, NIT Trichy" },
-    { text: "Generating monthly bills used to take 2 days of manual calculation. Now I click one button and it is done in minutes, including leave adjustments.", name: "Priya M.", role: "Hostel Clerk" },
-    { text: "I can see which students are skipping meals consistently. This was never possible before. Now I can plan food quantities much better and reduce waste.", name: "Vikram R.", role: "Mess Manager" },
-    { text: "The dispute resolution feature is a game changer. Students raise issues in the app, I review with full transaction history, resolve it — no back and forth.", name: "Meera T.", role: "Hostel Office" }
-  ];
-
-  const row2 = [
-    { text: "Previously I had to maintain a register and then tally at end of day. Now everything is automatic. I just open the session and the system does the rest.", name: "Rameswar", role: "Mess Staff" },
-    { text: "The leave application feature is perfect. I filed leave for Diwali vacation and my bill was automatically reduced. No need to chase the office.", name: "Ananya K.", role: "M.Tech 1st Year" },
-    { text: "Balance notifications are super helpful. I got alerted when my balance was low and could top up before it became a problem during exams.", name: "Arjun P.", role: "B.Tech 2nd Year" },
-    { text: "The QR scan is so fast. I just open my phone, point at the kiosk, and I am done. No waiting, no queues backing up.", name: "Shreya V.", role: "B.Tech Final Year" }
+  const reviews = [
+    { text: "Generating monthly bills used to take 2 days of manual calculation. Now I click one button and it is done in minutes, including leave adjustments.", name: "Priya M.", role: "Hostel Clerk, NIT Jalandhar" },
+    { text: "The QR scan is so fast. I just open my phone, point at the kiosk, and I am done. No waiting, no queues backing up.", name: "Arjun P.", role: "Final Year Student" },
+    { text: "I can see which students are skipping meals consistently. This helps us plan food quantities much better and reduce massive wastage.", name: "Vikram R.", role: "Mess Manager" },
+    { text: "Finally no more arguing about whether I ate breakfast. The app shows exactly when I scanned. Transparent and fast.", name: "Rahul S.", role: "3rd Year Student" }
   ];
 
   return (
@@ -71,34 +64,17 @@ const Testimonials = () => {
           100% { transform: translateX(0); }
         }
         .animate-marquee-left {
-          animation: marqueeLeft 40s linear infinite;
-        }
-        .animate-marquee-right {
-          animation: marqueeRight 40s linear infinite;
+          animation: marqueeLeft 60s linear infinite;
         }
       `}</style>
 
-      {/* Row 1 - Maps left */}
-      <div className="flex marquee-container relative mb-6">
-        {/* Gradient fades on edges */}
-        <div className="absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-base to-transparent z-10 pointer-events-none"></div>
-        <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-base to-transparent z-10 pointer-events-none"></div>
-
-        <div className="flex animate-marquee-left w-max">
-          {/* Double the array to create a seamless infinite loop effect */}
-          {[...row1, ...row1, ...row1].map((review, i) => (
-            <TestimonialCard key={i} {...review} />
-          ))}
-        </div>
-      </div>
-
-      {/* Row 2 - Maps right */}
+      {/* Single Row - Slower and cleaner */}
       <div className="flex marquee-container relative">
         <div className="absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-base to-transparent z-10 pointer-events-none"></div>
         <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-base to-transparent z-10 pointer-events-none"></div>
 
-        <div className="flex animate-marquee-right w-max">
-          {[...row2, ...row2, ...row2].map((review, i) => (
+        <div className="flex animate-marquee-left w-max">
+          {[...reviews, ...reviews, ...reviews].map((review, i) => (
             <TestimonialCard key={i} {...review} />
           ))}
         </div>

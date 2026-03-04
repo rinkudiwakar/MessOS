@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight, Calendar } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 interface HeroProps {
   onOpenModal?: () => void;
@@ -7,21 +8,59 @@ interface HeroProps {
 
 const Hero = ({ onOpenModal }: HeroProps) => {
   const { scrollY } = useScroll();
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  // Flattening effect for bottom fan mockups
+  // Auto-cycle the carousel every 4 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % 3);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Scroll transformations for the entire fan section
   const rotateX = useTransform(scrollY, [0, 400], [8, 0]);
   const translateY = useTransform(scrollY, [0, 400], [0, -50]);
-
-  // Inner siblings for fan
-  const sideRotateYRight = useTransform(scrollY, [0, 400], [-15, 0]);
-  const sideRotateYLeft = useTransform(scrollY, [0, 400], [15, 0]);
-  const sideTranslateXRight = useTransform(scrollY, [0, 400], [-20, 0]);
-  const sideTranslateXLeft = useTransform(scrollY, [0, 400], [20, 0]);
 
   const scrollTo = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  // Carousel positions logic
+  const getPosition = (index: number) => {
+    // Relative index tells us if the mockup is center(0), right(1), or left(2)
+    const relativeIndex = (index - activeIndex + 3) % 3;
+
+    if (relativeIndex === 0) { // Center (Active)
+      return {
+        x: '0%',
+        scale: 1,
+        rotateY: 0,
+        opacity: 1,
+        zIndex: 30,
+        filter: 'blur(0px)'
+      };
+    } else if (relativeIndex === 1) { // Right (Back)
+      return {
+        x: '35%',
+        scale: 0.8,
+        rotateY: -20,
+        opacity: 0.5,
+        zIndex: 10,
+        filter: 'blur(2px)'
+      };
+    } else { // Left (Back)
+      return {
+        x: '-35%',
+        scale: 0.8,
+        rotateY: 20,
+        opacity: 0.5,
+        zIndex: 10,
+        filter: 'blur(2px)'
+      };
     }
   };
 
@@ -138,47 +177,65 @@ const Hero = ({ onOpenModal }: HeroProps) => {
           Trusted by hostel administrators across India • Free to try
         </motion.p>
 
-        {/* 3D Mockup Fan (3 Screens - Reverted) */}
+        {/* 3D Mockup Carousel (Replaced Fan with Carousel) */}
         <motion.div
           initial={{ y: 150, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1.2, ease: "easeOut" }}
+          transition={{ duration: 1, delay: 1.2, ease: "easeOut" }}
           className="perspective-fan w-full max-w-6xl relative h-[300px] sm:h-[400px] md:h-[500px] flex justify-center items-start pointer-events-none mt-4"
         >
-          {/* Left Mockup (Manager) */}
+          {/* Mockup 1 (Manager Portal) */}
           <motion.div
-            style={{
-              rotateX,
-              rotateY: sideRotateYLeft,
-              translateX: sideTranslateXLeft,
-              y: translateY,
+            animate={{
+              ...getPosition(0),
+              rotateX: rotateX.get(),
+              y: translateY.get()
             }}
-            className="hidden md:block absolute left-[5%] xl:left-[8%] top-[10%] w-[42%] aspect-[16/10] bg-surface-elevated rounded-xl md:rounded-2xl border border-border/80 shadow-[0_20px_40px_rgba(0,0,0,0.4)] overflow-hidden -z-10 opacity-80"
+            transition={{ duration: 1.5, ease: "easeInOut" }}
+            className="absolute w-[90%] md:w-[60%] lg:w-[55%] aspect-[16/10] bg-surface-elevated rounded-xl md:rounded-[24px] border border-border/80 shadow-[0_20px_40px_rgba(0,0,0,0.4)] overflow-hidden"
           >
-            <div className="h-6 bg-surface border-b border-border/50 flex items-center px-4 gap-1.5"><div className="w-2.5 h-2.5 rounded-full bg-border"></div><div className="w-2.5 h-2.5 rounded-full bg-border"></div><div className="w-2.5 h-2.5 rounded-full bg-border"></div></div>
+            <div className="h-6 md:h-10 bg-surface border-b border-border/50 flex items-center px-4 gap-1.5 z-20 relative">
+              <div className="w-2.5 h-2.5 rounded-full bg-border"></div>
+              <div className="w-2.5 h-2.5 rounded-full bg-border"></div>
+              <div className="w-2.5 h-2.5 rounded-full bg-border"></div>
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div className="bg-surface-elevated px-4 py-1 rounded-md text-[10px] text-text-muted font-medium">Manager Dashboard</div>
+              </div>
+            </div>
             <img src="/mockups/manager_portal.jpg" alt="Manager Portal" className="w-full h-full object-cover object-top" />
           </motion.div>
 
-          {/* Right Mockup (Clerk) */}
+          {/* Mockup 2 (Clerk Portal) */}
           <motion.div
-            style={{
-              rotateX,
-              rotateY: sideRotateYRight,
-              translateX: sideTranslateXRight,
-              y: translateY,
+            animate={{
+              ...getPosition(1),
+              rotateX: rotateX.get(),
+              y: translateY.get()
             }}
-            className="hidden md:block absolute right-[5%] xl:right-[8%] top-[10%] w-[42%] aspect-[16/10] bg-surface-elevated rounded-xl md:rounded-2xl border border-border/80 shadow-[0_20px_40px_rgba(0,0,0,0.4)] overflow-hidden -z-10 opacity-80"
+            transition={{ duration: 1.5, ease: "easeInOut" }}
+            className="absolute w-[90%] md:w-[60%] lg:w-[55%] aspect-[16/10] bg-surface-elevated rounded-xl md:rounded-[24px] border border-border/80 shadow-[0_20px_40px_rgba(0,0,0,0.4)] overflow-hidden"
           >
-            <div className="h-6 bg-surface border-b border-border/50 flex items-center px-4 gap-1.5"><div className="w-2.5 h-2.5 rounded-full bg-border"></div><div className="w-2.5 h-2.5 rounded-full bg-border"></div><div className="w-2.5 h-2.5 rounded-full bg-border"></div></div>
+            <div className="h-6 md:h-10 bg-surface border-b border-border/50 flex items-center px-4 gap-1.5 z-20 relative">
+              <div className="w-2.5 h-2.5 rounded-full bg-border"></div>
+              <div className="w-2.5 h-2.5 rounded-full bg-border"></div>
+              <div className="w-2.5 h-2.5 rounded-full bg-border"></div>
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div className="bg-surface-elevated px-4 py-1 rounded-md text-[10px] text-text-muted font-medium">Finance & Records</div>
+              </div>
+            </div>
             <img src="/mockups/clerk_portal.jpg" alt="Clerk Portal" className="w-full h-full object-cover object-top" />
           </motion.div>
 
-          {/* Main Center Mockup (Student) */}
+          {/* Mockup 3 (Student Portal - Main) */}
           <motion.div
-            style={{ rotateX, y: translateY }}
-            className="relative z-10 w-[95%] md:w-[60%] lg:w-[55%] aspect-[16/10] bg-[#0A0A0A] rounded-xl md:rounded-[24px] border border-[#333] shadow-[0_40px_100px_rgba(0,0,0,0.9),0_0_80px_rgba(79,110,247,0.2)] overflow-hidden"
+            animate={{
+              ...getPosition(2),
+              rotateX: rotateX.get(),
+              y: translateY.get()
+            }}
+            transition={{ duration: 1.5, ease: "easeInOut" }}
+            className="absolute w-[90%] md:w-[60%] lg:w-[55%] aspect-[16/10] bg-[#0A0A0A] rounded-xl md:rounded-[24px] border border-[#333] shadow-[0_40px_100px_rgba(0,0,0,0.9),0_0_80px_rgba(79,110,247,0.2)] overflow-hidden"
           >
-            {/* Apple style Browser Bar */}
             <div className="h-7 md:h-10 bg-[#1A1A1A] border-b border-[#333] flex items-center px-3 md:px-4 flex-row relative z-20">
               <div className="flex gap-1.5 md:gap-2">
                 <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-[#FF5F56]"></div>
@@ -197,7 +254,7 @@ const Hero = ({ onOpenModal }: HeroProps) => {
         </motion.div>
 
       </div>
-    </section >
+    </section>
   );
 };
 
