@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #F97316;
+  --color-primary-dark: #EA580C;
+  --color-success: #34C759;
+  --color-warning: #FF9500;
+  --color-danger: #FF3B30;
+  --color-surface: #0A0A0A;
+  --color-muted: #71717A;
+
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  --font-display: "Outfit", var(--font-sans);
+  
+  --radius-3xl: 32px;
+  --radius-2xl: 24px;
+  --radius-xl: 16px;
+  --radius-lg: 12px;
+
+  --animate-marquee: marquee 60s linear infinite;
+
+  @keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-black text-white/90 antialiased selection:bg-primary/30 font-sans;
+  }
+  
+  h1, h2, h3, h4, .font-display {
+    @apply font-display tracking-tight text-white;
+  }
+}
+
+@layer utilities {
+  .pause {
+    animation-play-state: paused;
+  }
+  
+  .glass {
+    @apply bg-white/[0.03] backdrop-blur-xl border border-white/[0.05];
+  }
+  
+  .octagon {
+    clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+  }
+
+  .smooth-octagon {
+    /* Approximation of a smooth octagon using border radius and rotation if needed, 
+       but for true octagon we use clip-path. User also said "smooth corner" */
+    @apply rounded-xl;
+    clip-path: polygon(25% 0%, 75% 0%, 100% 25%, 100% 75%, 75% 100%, 25% 100%, 0% 75%, 0% 25%);
+  }
+
+  .text-glow {
+    text-shadow: 0 0 20px rgba(249, 115, 22, 0.3);
+  }
+}

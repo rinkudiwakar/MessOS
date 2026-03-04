@@ -1,0 +1,6 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Octagonal Background -->
+  <path d="M9.37 2L2 9.37V22.63L9.37 30H22.63L30 22.63V9.37L22.63 2H9.37Z" fill="#F97316"/>
+  <!-- Stylized 'M' -->
+  <path d="M8 22V10L16 16L24 10V22" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
