@@ -168,7 +168,7 @@ const PortalSelection = () => {
             </div>
 
             <p className="text-[11px] text-text-muted mt-6 text-center">
-              Staff accounts are managed by your institution's DevOps team
+              Staff accounts are managed by your institution's Admin team
             </p>
           </motion.div>
 

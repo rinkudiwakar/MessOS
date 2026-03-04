@@ -63,7 +63,7 @@ const FAQ = () => {
     },
     {
       q: "Who manages staff accounts (munshi, manager, clerk)?",
-      a: "Staff accounts are created and managed by your institution's designated DevOps/IT team using the MessOS DevOps portal. Students self-register through the student app."
+      a: "Staff accounts are created and managed by your institution's designated Admin team using the MessOS Admin portal. Students self-register through the student app."
     },
     {
       q: "Is MessOS suitable for private hostel messes or only government colleges?",

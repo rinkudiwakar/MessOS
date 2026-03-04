@@ -29,8 +29,8 @@ const Footer = () => {
               <li><a href="https://manager-messos.vercel.app/login" target="_blank" rel="noopener noreferrer" className="text-[14px] text-text-secondary hover:text-accent transition-colors">Mess Manager Portal</a></li>
               <li><a href="https://clerk-messos.vercel.app/login" target="_blank" rel="noopener noreferrer" className="text-[14px] text-text-secondary hover:text-accent transition-colors">Clerk Portal</a></li>
               <li><a href="https://munshi-messos.vercel.app/display" target="_blank" rel="noopener noreferrer" className="text-[14px] text-text-secondary hover:text-accent transition-colors">QR Display (Kiosk)</a></li>
-              {/* Subtle DevOps Link */}
-              <li className="pt-2"><a href="https://devops-messos.vercel.app/login" target="_blank" rel="noopener noreferrer" className="text-[11px] text-text-muted hover:text-text-secondary transition-colors">DevOps Portal</a></li>
+              {/* Subtle Admin Link */}
+              <li className="pt-2"><a href="https://admin-messos.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-[11px] text-text-muted hover:text-text-secondary transition-colors">Admin Portal</a></li>
             </ul>
           </div>
 
