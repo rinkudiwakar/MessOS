@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Github, Linkedin, Twitter, Mail } from 'lucide-react';
 
 const Footer = () => {
@@ -40,12 +41,12 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold text-[15px] text-text-primary mb-6">Company</h4>
             <ul className="space-y-3">
-              <li><a href="#about" className="text-[14px] text-text-secondary hover:text-text-primary transition-colors">About Us</a></li>
-              <li><a href="#features" className="text-[14px] text-text-secondary hover:text-text-primary transition-colors">Features</a></li>
-              <li><a href="#pricing" className="text-[14px] text-text-secondary hover:text-text-primary transition-colors">Pricing</a></li>
-              <li><a href="#contact" className="text-[14px] text-text-secondary hover:text-text-primary transition-colors">Contact</a></li>
-              <li className="pt-2"><a href="#" className="text-[13px] text-text-muted hover:text-text-secondary transition-colors">Privacy Policy</a></li>
-              <li><a href="#" className="text-[13px] text-text-muted hover:text-text-secondary transition-colors">Terms of Service</a></li>
+              <li><Link to="/about" className="text-[14px] text-text-secondary hover:text-text-primary transition-colors">About Us</Link></li>
+              <li><Link to="/features" className="text-[14px] text-text-secondary hover:text-text-primary transition-colors">Features</Link></li>
+              <li><Link to="/pricing" className="text-[14px] text-text-secondary hover:text-text-primary transition-colors">Pricing</Link></li>
+              <li><Link to="/contact" className="text-[14px] text-text-secondary hover:text-text-primary transition-colors">Contact</Link></li>
+              <li className="pt-2"><Link to="#" className="text-[13px] text-text-muted hover:text-text-secondary transition-colors">Privacy Policy</Link></li>
+              <li><Link to="#" className="text-[13px] text-text-muted hover:text-text-secondary transition-colors">Terms of Service</Link></li>
             </ul>
           </div>
 

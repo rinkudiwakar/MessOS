@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
@@ -26,12 +27,13 @@ const Navbar = ({ onOpenModal }: NavbarProps) => {
     }
   };
 
+  const location = useLocation();
+
   const navLinks = [
-    { name: 'Features', id: 'features' },
-    { name: 'How It Works', id: 'how-it-works' },
-    { name: 'Portals', id: 'portals' },
-    { name: 'Pricing', id: 'pricing' },
-    { name: 'About', id: 'about' },
+    { name: 'Home', path: '/' },
+    { name: 'Features', path: '/features' },
+    { name: 'Pricing', path: '/pricing' },
+    { name: 'About', path: '/about' },
   ];
 
   return (
@@ -44,23 +46,29 @@ const Navbar = ({ onOpenModal }: NavbarProps) => {
     >
       <div className="max-w-7xl mx-auto w-full px-4 md:px-6 flex items-center justify-between">
         {/* Logo */}
-        <div className="flex items-center gap-1 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-          <span className="font-display font-bold text-[22px] text-text-primary tracking-tight">Mess</span>
-          <span className="font-display font-bold text-[22px] text-accent tracking-tight">OS</span>
-        </div>
+        <Link to="/" className="flex items-center gap-2 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+          <img src="/logo.png" alt="MessOS" className="h-8 w-auto object-contain" />
+          <div className="flex items-center gap-[2px]">
+            <span className="font-display font-bold text-[22px] text-text-primary tracking-tight">Mess</span>
+            <span className="font-display font-bold text-[22px] text-accent tracking-tight">OS</span>
+          </div>
+        </Link>
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <button
-              key={link.name}
-              onClick={() => scrollTo(link.id)}
-              className="text-[14px] font-medium text-text-secondary hover:text-text-primary transition-colors relative group"
-            >
-              {link.name}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent/70 transition-all duration-300 group-hover:w-full"></span>
-            </button>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = location.pathname === link.path;
+            return (
+              <Link
+                key={link.name}
+                to={link.path}
+                className={`text-[14px] font-medium transition-colors relative group ${isActive ? 'text-text-primary' : 'text-text-secondary hover:text-text-primary'}`}
+              >
+                {link.name}
+                <span className={`absolute -bottom-1 left-0 h-0.5 bg-accent/70 transition-all duration-300 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+              </Link>
+            );
+          })}
         </nav>
 
         {/* Desktop CTA */}
@@ -98,15 +106,19 @@ const Navbar = ({ onOpenModal }: NavbarProps) => {
             transition={{ duration: 0.2 }}
             className="absolute top-[64px] left-0 right-0 bg-surface border-b border-border shadow-2xl p-6 flex flex-col gap-4 md:hidden"
           >
-            {navLinks.map((link) => (
-              <button
-                key={link.name}
-                onClick={() => scrollTo(link.id)}
-                className="text-left text-[16px] font-medium text-text-primary py-2 border-b border-border/50"
-              >
-                {link.name}
-              </button>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = location.pathname === link.path;
+              return (
+                <Link
+                  key={link.name}
+                  to={link.path}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`text-left text-[16px] font-medium py-2 border-b border-border/50 ${isActive ? 'text-accent' : 'text-text-primary hover:text-accent transition-colors'}`}
+                >
+                  {link.name}
+                </Link>
+              );
+            })}
             <div className="flex flex-col gap-3 mt-4">
               <button
                 onClick={() => scrollTo('contact')}

@@ -1,18 +1,15 @@
 import { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar.tsx';
-import Hero from './components/Hero.tsx';
-import StatsBar from './components/StatsBar.tsx';
-import PortalSelection from './components/PortalSelection.tsx';
-import HowItWorks from './components/HowItWorks.tsx';
-import Features from './components/Features.tsx';
-import PortalShowcase from './components/PortalShowcase.tsx';
-import Testimonials from './components/Testimonials.tsx';
-import AboutFounder from './components/AboutFounder.tsx';
-import Pricing from './components/Pricing.tsx';
-import FAQ from './components/FAQ.tsx';
-import Contact from './components/Contact.tsx';
 import Footer from './components/Footer.tsx';
 import LeadModal from './components/LeadModal.tsx';
+import ScrollToTop from './components/ScrollToTop.tsx';
+
+// Pages
+import Home from './pages/Home.tsx';
+import Features from './pages/Features.tsx';
+import Pricing from './pages/Pricing.tsx';
+import About from './pages/About.tsx';
 
 function App() {
   const [modalState, setModalState] = useState<{ isOpen: boolean, mode: 'capture' | 'book' }>({
@@ -30,21 +27,15 @@ function App() {
 
   return (
     <div className="min-h-screen bg-base text-text-primary selection:bg-accent/30 font-body">
+      <ScrollToTop />
       <Navbar onOpenModal={() => openModal('capture')} />
 
-      <main>
-        <Hero onOpenModal={() => openModal('book')} />
-        <StatsBar />
-        <PortalSelection />
-        <HowItWorks />
-        <Features />
-        <PortalShowcase />
-        <Testimonials />
-        <AboutFounder />
-        <Pricing onOpenModal={() => openModal('capture')} />
-        <FAQ />
-        <Contact onOpenModal={() => openModal('book')} />
-      </main>
+      <Routes>
+        <Route path="/" element={<Home onOpenModal={openModal} />} />
+        <Route path="/features" element={<Features />} />
+        <Route path="/pricing" element={<Pricing onOpenModal={openModal} />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
 
       <Footer />
 
