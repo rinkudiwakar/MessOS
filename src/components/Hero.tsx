@@ -45,7 +45,7 @@ const Hero = ({ onOpenModal }: HeroProps) => {
         </motion.div>
 
         {/* Headline */}
-        <h1 className="font-display text-[40px] md:text-[60px] lg:text-[72px] font-extrabold leading-[1.1] tracking-tight mb-6 max-w-4xl flex flex-col items-center">
+        <h1 className="font-display text-[34px] sm:text-[40px] md:text-[60px] lg:text-[72px] font-extrabold leading-[1.1] tracking-tight mb-6 max-w-4xl flex flex-col items-center">
           <div className="overflow-hidden flex flex-wrap justify-center w-full">
             {["The", "Operating", "System"].map((word, i) => (
               <motion.span

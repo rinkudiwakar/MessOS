@@ -42,7 +42,7 @@ const Navbar = ({ onOpenModal }: NavbarProps) => {
       className={`fixed top-0 left-0 right-0 z-50 h-[64px] flex items-center transition-all duration-300 ${isScrolled ? 'bg-base/85 backdrop-blur-md border-b border-border' : 'bg-transparent border-b border-transparent'
         }`}
     >
-      <div className="max-w-7xl mx-auto w-full px-6 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto w-full px-4 md:px-6 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center gap-1 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
           <span className="font-display font-bold text-[22px] text-text-primary tracking-tight">Mess</span>

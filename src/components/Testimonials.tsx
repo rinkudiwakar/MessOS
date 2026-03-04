@@ -11,7 +11,7 @@ const StarRating = () => (
 );
 
 const TestimonialCard = ({ text, name, role }: { text: string, name: string, role: string }) => (
-  <div className="w-[300px] shrink-0 bg-surface-elevated border border-border rounded-xl p-5 mx-3 shadow-sm hover:border-accent/30 transition-colors">
+  <div className="w-[260px] sm:w-[300px] shrink-0 bg-surface-elevated border border-border rounded-xl p-5 mx-3 shadow-sm hover:border-accent/30 transition-colors">
     <StarRating />
     <p className="text-[14px] font-body leading-[1.6] text-text-primary mb-5 min-h-[90px]">"{text}"</p>
     <div>
@@ -81,8 +81,8 @@ const Testimonials = () => {
       {/* Row 1 - Maps left */}
       <div className="flex marquee-container relative mb-6">
         {/* Gradient fades on edges */}
-        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-base to-transparent z-10 pointer-events-none"></div>
-        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-base to-transparent z-10 pointer-events-none"></div>
+        <div className="absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-base to-transparent z-10 pointer-events-none"></div>
+        <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-base to-transparent z-10 pointer-events-none"></div>
 
         <div className="flex animate-marquee-left w-max">
           {/* Double the array to create a seamless infinite loop effect */}
@@ -94,8 +94,8 @@ const Testimonials = () => {
 
       {/* Row 2 - Maps right */}
       <div className="flex marquee-container relative">
-        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-base to-transparent z-10 pointer-events-none"></div>
-        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-base to-transparent z-10 pointer-events-none"></div>
+        <div className="absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-base to-transparent z-10 pointer-events-none"></div>
+        <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-base to-transparent z-10 pointer-events-none"></div>
 
         <div className="flex animate-marquee-right w-max">
           {[...row2, ...row2, ...row2].map((review, i) => (

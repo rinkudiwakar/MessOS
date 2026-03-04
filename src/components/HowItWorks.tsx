@@ -98,6 +98,8 @@ const HowItWorks = () => {
             {/* Animated traveling dot */}
             <div className="absolute top-[-5px] left-0 w-2 h-2 rounded-full bg-accent shadow-[0_0_8px_rgba(79,110,247,0.8)] animate-[flowRight_4s_linear_infinite]"></div>
           </div>
+          {/* Connecting Line (Mobile) */}
+          <div className="absolute left-[39px] top-10 bottom-10 w-[2px] border-l-2 border-dashed border-border lg:hidden z-0"></div>
 
           <style>{`
             @keyframes flowRight {

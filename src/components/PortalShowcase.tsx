@@ -90,12 +90,12 @@ const PortalShowcase = () => {
           </motion.h2>
 
           {/* Tabs */}
-          <div className="flex flex-wrap justify-center gap-2 md:gap-4 lg:gap-8 mb-12 border-b border-border/50 pb-4 max-w-2xl mx-auto">
+          <div className="flex overflow-x-auto hide-scrollbar justify-start md:justify-center gap-3 md:gap-4 lg:gap-8 mb-12 border-b border-border/50 pb-4 max-w-3xl mx-auto px-2">
             {portals.map((portal, idx) => (
               <button
                 key={portal.id}
                 onClick={() => handleTabChange(idx)}
-                className={`relative px-4 py-2 text-[14px] md:text-[15px] font-medium transition-colors ${activeTab === idx ? "text-text-primary" : "text-text-muted hover:text-text-secondary"
+                className={`relative whitespace-nowrap px-4 py-2 text-[14px] md:text-[15px] font-medium transition-colors ${activeTab === idx ? "text-text-primary" : "text-text-muted hover:text-text-secondary"
                   }`}
               >
                 {portal.name}
@@ -151,7 +151,7 @@ const PortalShowcase = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.3 }}
-              className="flex flex-col md:flex-row gap-4 md:gap-12"
+              className="flex flex-col md:flex-row gap-3 md:gap-12 px-4"
             >
               {portals[activeTab].bullets.map((bullet, i) => (
                 <div key={i} className="flex items-center gap-2">
