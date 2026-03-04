@@ -18,9 +18,6 @@ const Footer = () => {
             <p className="text-[14px] text-text-secondary mb-6 max-w-xs">
               The operating system for hostel messes. Digitizing operations across Indian engineering colleges.
             </p>
-            <p className="text-[13px] text-text-muted font-mono">
-              © {currentYear} <a href="https://admin-messos.vercel.app/" target="_blank" rel="noopener noreferrer" className="cursor-default text-text-muted hover:text-text-muted outline-none">MessOS</a>.<br />All rights reserved.
-            </p>
           </div>
 
           {/* Portals Col */}
@@ -81,7 +78,9 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="border-t border-border pt-8 flex flex-col items-center">
-          {/* Keeping flex structure if needed for future additions */}
+          <p className="text-[13px] text-text-muted font-mono text-center">
+            © {currentYear} MessOS. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>
