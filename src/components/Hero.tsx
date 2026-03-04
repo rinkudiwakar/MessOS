@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight, Calendar } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 interface HeroProps {
   onOpenModal?: () => void;
@@ -22,7 +23,14 @@ const Hero = ({ onOpenModal }: HeroProps) => {
   const rotateX = useTransform(scrollY, [0, 400], [8, 0]);
   const translateY = useTransform(scrollY, [0, 400], [0, -50]);
 
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const scrollTo = (id: string) => {
+    if (location.pathname !== '/') {
+      navigate('/#' + id);
+      return;
+    }
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });

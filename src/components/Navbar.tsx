@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 interface NavbarProps {
   onOpenModal?: () => void;
@@ -21,11 +22,17 @@ const Navbar = ({ onOpenModal }: NavbarProps) => {
 
   const scrollTo = (id: string) => {
     setMobileMenuOpen(false);
+    if (location.pathname !== '/') {
+      navigate('/#' + id);
+      return;
+    }
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  const navigate = useNavigate();
 
   const location = useLocation();
 
