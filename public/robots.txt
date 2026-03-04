@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://messos.active/sitemap.xml
+Sitemap: https://messos.vercel.app/sitemap.xml
