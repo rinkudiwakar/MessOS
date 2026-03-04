@@ -1,7 +1,7 @@
-{
-  "name": "tmp-project",
+  "name": "messos-landing",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "Official landing page for MessOS - The Operating System for Hostel Messes",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.98.0",
     "@tailwindcss/vite": "^4.2.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.34.5",
