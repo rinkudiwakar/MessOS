@@ -2,13 +2,19 @@
 
 The official operating system for hostel messes. MessOS is a premium SaaS platform designed to digitize mess operations across Indian engineering colleges, providing a unified interface for students, mess managers, munshis, and hostel clerks.
 
-![MessOS Official Website](https://messos.vercel.app/)
-![Student portal](https://student-messos.vercel.app/)
-![Munshi Portal](https://munshi-messos.vercel.app/login)
-![clerk portal](https://clerk-messos.vercel.app/login)
-![mess manager portal](https://manager-messos.vercel.app/login)
-![admin portal](https://admin-messos.vercel.app/login)
-![kisok site](https://munshi-messos.vercel.app/display)
+[MessOS Official Website](https://messos.vercel.app/)
+
+[Student portal](https://student-messos.vercel.app/)
+
+[Munshi Portal](https://munshi-messos.vercel.app/login)
+
+[clerk portal](https://clerk-messos.vercel.app/login)
+
+[mess manager portal](https://manager-messos.vercel.app/login)
+
+[admin portal](https://admin-messos.vercel.app/login)
+
+[kisok site](https://munshi-messos.vercel.app/display)
 
 ## 🚀 Features
 
